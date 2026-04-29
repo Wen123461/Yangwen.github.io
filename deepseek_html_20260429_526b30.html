@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>厦大厦门校友会乒乓球协会成立暨校友乒乓球赛</title>
+    <style>
+        :root {
+            --xmu-blue: #0c2d5e;
+            --xmu-blue-light: #1a4478;
+            --xmu-blue-dark: #081f40;
+            --xmu-gold: #c9a96e;
+            --xmu-gold-light: #dbc294;
+            --xmu-red: #b22234;
+            --white: #ffffff;
+            --cream: #fdf8f0;
+            --text-dark: #1a1a1a;
+            --text-gray: #555;
+            --accent-orange: #e8783b;
+            --subtle-bg: #f7f3ec;
+            --card-bg: #ffffff;
+            --shadow-sm: 0 2px 12px rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.10);
+            --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.14);
+            --radius-sm: 8px;
+            --radius-md: 14px;
+            --radius-lg: 20px;
+            --radius-xl: 28px;
+            --font-title: 'Noto Serif SC', 'STSong', 'Songti SC', 'SimSun', 'KaiTi', 'STKaiti', '楷体', serif;
+            --font-body: 'PingFang SC', 'Microsoft YaHei', 'Hiragino Sans GB', 'Noto Sans SC', sans-serif;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background: #e8e4dd;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            background-image:
+                radial-gradient(ellipse at 20% 10%, rgba(12, 45, 94, 0.04) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 90%, rgba(201, 169, 110, 0.07) 0%, transparent 55%),
+                radial-gradient(ellipse at 50% 50%, rgba(180, 160, 140, 0.05) 0%, transparent 70%);
+            background-attachment: fixed;
+        }
+
+        /* 主海报容器 */
+        .poster-wrapper {
+            width: 100%;
+            max-width: 780px;
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.04);
+            background: var(--white);
+        }
+
+        /* 顶部装饰条 */
+        .poster-wrapper::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 6px;
+            background: linear-gradient(90deg,
+                    var(--xmu-blue) 0%,
+                    var(--xmu-blue-light) 25%,
+                    var(--xmu-gold) 50%,
+                    var(--xmu-blue-light) 75%,
+                    var(--xmu-blue) 100%);
+            z-index: 10;
+            border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+        }
+
+        .poster {
+            background: var(--white);
+            position: relative;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        /* --- 顶部横幅区域 --- */
+        .hero-section {
+            position: relative;
+            background: linear-gradient(170deg, #091f3d 0%, #0c2d5e 30%, #0f3468 60%, #132f5c 100%);
+            padding: 36px 32px 30px;
+            text-align: center;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        /* 背景乒乓纹理 */
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                radial-gradient(circle at 15% 25%, rgba(255, 255, 255, 0.04) 0%, transparent 50%),
+                radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.03) 0%, transparent 45%),
+                radial-gradient(circle at 42% 70%, rgba(201, 169, 110, 0.06) 0%, transparent 40%),
+                radial-gradient(circle at 88% 75%, rgba(255, 255, 255, 0.025) 0%, transparent 50%);
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* 乒乓球大圆装饰 */
+        .hero-pingpong-bg {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.07);
+            top: -60px;
+            right: -50px;
+            z-index: 0;
+            pointer-events: none;
+            animation: floatSlow 8s ease-in-out infinite;
+        }
+        .hero-pingpong-bg::after {
+            content: '';
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.05);
+            top: 40px;
+            left: 25px;
+        }
+        .hero-pingpong-bg-2 {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 255, 255, 0.06);
+            bottom: -30px;
+            left: -30px;
+            z-index: 0;
+            pointer-events: none;
+            animation: floatSlow 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes floatSlow {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-10px) rotate(3deg);
+            }
+            50% {
+                transform: translateY(-4px) rotate(1deg);
+            }
+            75% {
+                transform: translateY(-14px) rotate(-2deg);
+            }
+        }
+
+        /* 凤凰花装饰线条 */
+        .phoenix-flower-accent {
+            position: absolute;
+            top: 16px;
+            left: 24px;
+            width: 50px;
+            height: 50px;
+            opacity: 0.25;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .phoenix-flower-accent svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* 徽标行 */
+        .logo-row {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .logo-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 30px;
+            padding: 8px 18px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            letter-spacing: 2px;
+            font-weight: 500;
+        }
+        .logo-badge .icon-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--xmu-gold);
+            box-shadow: 0 0 10px rgba(201, 169, 110, 0.7);
+        }
+
+        /* 主标题 */
+        .main-title {
+            font-family: var(--font-title);
+            font-size: clamp(26px, 4.5vw, 38px);
+            font-weight: 700;
+            color: var(--white);
+            letter-spacing: 2px;
+            line-height: 1.35;
+            margin-bottom: 8px;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+        .main-title .highlight {
+            color: var(--xmu-gold-light);
+            position: relative;
+            display: inline-block;
+        }
+        .main-title .highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 2px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--xmu-gold);
+            border-radius: 2px;
+            opacity: 0.5;
+        }
+
+        /* 小标题 */
+        .sub-title {
+            font-family: var(--font-title);
+            font-size: clamp(16px, 2.4vw, 20px);
+            color: rgba(255, 255, 255, 0.85);
+            letter-spacing: 4px;
+            margin-bottom: 6px;
+            font-weight: 400;
+        }
+        .sub-title-line {
+            display: inline-block;
+            width: 50px;
+            height: 1px;
+            background: var(--xmu-gold);
+            margin: 0 10px;
+            vertical-align: middle;
+            opacity: 0.6;
+        }
+
+        /* --- 信息卡片区 --- */
+        .info-section {
+            padding: 28px 30px 20px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, #fefefe 0%, #fdfaf5 100%);
+        }
+
+        /* 关键信息三列 */
+        .key-info-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+        @media (max-width: 600px) {
+            .key-info-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .key-info-row .info-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+        @media (max-width: 400px) {
+            .key-info-row {
+                grid-template-columns: 1fr;
+            }
+            .key-info-row .info-card:last-child {
+                grid-column: auto;
+            }
+        }
+
+        .info-card {
+            background: var(--white);
+            border-radius: var(--radius-md);
+            padding: 16px 14px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid #eee;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+        .info-card:hover {
+            box-shadow: var(--shadow-md);
+            transform: translateY(-2px);
+            border-color: #ddd;
+        }
+        .info-card .card-icon {
+            font-size: 28px;
+            margin-bottom: 6px;
+            display: block;
+        }
+        .info-card .card-label {
+            font-size: 11px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+        .info-card .card-value {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--xmu-blue);
+            letter-spacing: 0.5px;
+            line-height: 1.4;
+        }
+        .info-card .card-value.small {
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        /* 分割线 */
+        .divider-ornament {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 0 0 18px;
+        }
+        .divider-ornament .line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #d5c5a5, transparent);
+            max-width: 80px;
+        }
+        .divider-ornament .ornament-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--xmu-gold);
+            box-shadow: 0 0 6px rgba(201, 169, 110, 0.5);
+        }
+
+        /* 比赛形式详情 */
+        .detail-block {
+            background: var(--subtle-bg);
+            border-radius: var(--radius-md);
+            padding: 20px 22px;
+            margin-bottom: 18px;
+            border-left: 4px solid var(--xmu-gold);
+            position: relative;
+        }
+        .detail-block .detail-title {
+            font-family: var(--font-title);
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--xmu-blue);
+            margin-bottom: 10px;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .detail-block .detail-title::before {
+            content: '🏓';
+            font-size: 20px;
+        }
+        .detail-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px 20px;
+            font-size: 14px;
+            color: #444;
+            line-height: 1.6;
+        }
+        @media (max-width: 500px) {
+            .detail-list {
+                grid-template-columns: 1fr;
+            }
+        }
+        .detail-list li {
+            position: relative;
+            padding-left: 18px;
+        }
+        .detail-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 8px;
+            color: var(--xmu-gold);
+            line-height: 1.7;
+        }
+        .detail-highlight {
+            background: #fff;
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-weight: 600;
+            color: var(--xmu-red);
+            font-size: 13px;
+            display: inline-block;
+            margin-top: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        /* 温馨说明 */
+        .warm-note {
+            text-align: center;
+            font-size: 13px;
+            color: #888;
+            margin-top: 6px;
+            font-style: italic;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            background: rgba(201, 169, 110, 0.06);
+            border-radius: 20px;
+            display: inline-block;
+            width: 100%;
+        }
+        .warm-note .heart {
+            color: #d4845e;
+        }
+
+        /* --- 报名区域 --- */
+        .registration-section {
+            padding: 10px 30px 30px;
+            position: relative;
+            z-index: 1;
+            background: linear-gradient(180deg, #fdfaf5 0%, #fefefe 100%);
+        }
+
+        .reg-card {
+            background: var(--white);
+            border-radius: var(--radius-lg);
+            padding: 22px 24px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid #eee;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .reg-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--xmu-blue), var(--xmu-gold), var(--xmu-blue));
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        }
+
+        .reg-card .reg-title {
+            font-family: var(--font-title);
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--xmu-blue);
+            margin-bottom: 6px;
+            letter-spacing: 1.5px;
+        }
+        .reg-card .reg-deadline {
+            display: inline-block;
+            background: #fff5f0;
+            color: #c0392b;
+            font-weight: 700;
+            padding: 4px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            border: 1px solid #fdd;
+        }
+        .reg-card .qr-hint {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 10px;
+        }
+        .reg-link-display {
+            display: inline-block;
+            background: #f8f9fa;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 12px;
+            color: #555;
+            word-break: break-all;
+            max-width: 100%;
+            letter-spacing: 0.3px;
+            border: 1px dashed #ddd;
+            margin-bottom: 14px;
+            font-family: 'SF Mono', 'Consolas', 'Monaco', monospace;
+        }
+        .reg-btn {
+            display: inline-block;
+            background: var(--xmu-blue);
+            color: #fff;
+            padding: 14px 40px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: var(--transition);
+            box-shadow: 0 6px 20px rgba(12, 45, 94, 0.3);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        .reg-btn:hover {
+            background: #1a4478;
+            box-shadow: 0 10px 28px rgba(12, 45, 94, 0.4);
+            transform: translateY(-2px);
+        }
+        .reg-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 12px rgba(12, 45, 94, 0.3);
+        }
+        .reg-btn .btn-icon {
+            margin-right: 6px;
+        }
+
+        /* 联系咨询 */
+        .contact-row {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+            font-size: 13px;
+            color: #666;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #fafafa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            letter-spacing: 0.5px;
+        }
+        .contact-item .contact-icon {
+            font-size: 16px;
+        }
+        .contact-item strong {
+            color: #333;
+            letter-spacing: 0.8px;
+        }
+
+        /* --- 底部 --- */
+        .footer-strip {
+            background: var(--xmu-blue-dark);
+            padding: 14px 24px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            letter-spacing: 2px;
+            position: relative;
+            z-index: 1;
+        }
+        .footer-strip span {
+            color: var(--xmu-gold-light);
+            font-weight: 500;
+        }
+
+        /* 响应式微调 */
+        @media (max-width: 600px) {
+            .hero-section {
+                padding: 24px 18px 20px;
+            }
+            .info-section {
+                padding: 20px 14px 14px;
+            }
+            .registration-section {
+                padding: 6px 14px 20px;
+            }
+            .detail-block {
+                padding: 14px 14px;
+            }
+            .reg-card {
+                padding: 16px 14px;
+            }
+            .contact-row {
+                gap: 10px;
+            }
+            .contact-item {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+            .logo-badge {
+                font-size: 11px;
+                padding: 6px 12px;
+                letter-spacing: 1px;
+            }
+        }
+
+        /* 打印样式 */
+        @media print {
+            body {
+                background: #fff;
+                padding: 0;
+            }
+            .poster-wrapper {
+                max-width: 100%;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            .poster-wrapper::before {
+                border-radius: 0;
+            }
+            .reg-btn {
+                background: #0c2d5e !important;
+                color: #fff !important;
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            .hero-section {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="poster-wrapper">
+        <div class="poster">
+
+            <!-- ============ 顶部横幅 ============ -->
+            <section class="hero-section">
+                <!-- 装饰乒乓球 -->
+                <div class="hero-pingpong-bg"></div>
+                <div class="hero-pingpong-bg-2"></div>
+                <!-- 凤凰花装饰 -->
+                <div class="phoenix-flower-accent" aria-hidden="true">
+                    <svg viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="25" cy="15" r="4" fill="rgba(255,255,255,0.5)"/>
+                        <circle cx="18" cy="24" r="5" fill="rgba(255,255,255,0.4)"/>
+                        <circle cx="32" cy="24" r="5" fill="rgba(255,255,255,0.4)"/>
+                        <circle cx="22" cy="36" r="5" fill="rgba(255,255,255,0.35)"/>
+                        <circle cx="28" cy="36" r="5" fill="rgba(255,255,255,0.35)"/>
+                        <circle cx="25" cy="26" r="3" fill="rgba(255,200,100,0.6)"/>
+                    </svg>
+                </div>
+
+                <div class="hero-content">
+                    <!-- 徽标 -->
+                    <div class="logo-row">
+                        <span class="logo-badge">
+                            <span class="icon-dot"></span> 厦门大学校友会
+                        </span>
+                        <span class="logo-badge">
+                            <span class="icon-dot"></span> 乒乓球协会
+                        </span>
+                    </div>
+                    <!-- 主标题 -->
+                    <h1 class="main-title">
+                        厦大厦门校友会<br><span class="highlight">乒乓球协会成立</span><br>暨校友乒乓球赛
+                    </h1>
+                    <!-- 小标题 -->
+                    <p class="sub-title">
+                        <span class="sub-title-line"></span> 以球会友，以乒传情 <span class="sub-title-line"></span>
+                    </p>
+                </div>
+            </section>
+
+            <!-- ============ 信息区域 ============ -->
+            <section class="info-section">
+                <!-- 关键信息三列 -->
+                <div class="key-info-row">
+                    <div class="info-card">
+                        <span class="card-icon">📅</span>
+                        <div class="card-label">活动时间</div>
+                        <div class="card-value">5月23日</div>
+                    </div>
+                    <div class="info-card">
+                        <span class="card-icon">📍</span>
+                        <div class="card-label">活动地点</div>
+                        <div class="card-value small">厦门佰翔波特曼<br>七星湾酒店</div>
+                    </div>
+                    <div class="info-card">
+                        <span class="card-icon">👥</span>
+                        <div class="card-label">参赛对象</div>
+                        <div class="card-value small">在厦门工作、居住<br>生活的厦大校友</div>
+                    </div>
+                </div>
+
+                <!-- 分割装饰 -->
+                <div class="divider-ornament">
+                    <span class="line"></span>
+                    <span class="ornament-dot"></span>
+                    <span class="line"></span>
+                </div>
+
+                <!-- 比赛形式详情 -->
+                <div class="detail-block">
+                    <div class="detail-title">比赛形式</div>
+                    <ul class="detail-list">
+                        <li>每队含球员、领队或教练<strong>限五人</strong></li>
+                        <li>其中<strong>女球员一名</strong></li>
+                        <li><strong>五十岁以上球员一名</strong></li>
+                        <li>若不满足条件，采用<strong>让分形式</strong></li>
+                        <li>拟组<strong>十二支</strong>参赛队</li>
+                        <li><strong>先报先得</strong>，额满即止</li>
+                    </ul>
+                    <span class="detail-highlight">⚡ 仅12支队伍名额 · 先报先得</span>
+                </div>
+
+                <!-- 温馨说明 -->
+                <p class="warm-note">
+                    <span class="heart">❤</span> 以校友交流为主，大会提供<strong>午餐及纪念服装</strong>，
+                    不设奖金奖牌，只为<strong>畅叙情谊、切磋球技、共忆时光</strong> <span class="heart">❤</span>
+                </p>
+            </section>
+
+            <!-- ============ 报名区域 ============ -->
+            <section class="registration-section">
+                <div class="reg-card">
+                    <div class="reg-title">📋 报名通道</div>
+                    <div class="reg-deadline">⏰ 报名截止：2026年5月13日</div>
+                    <p class="qr-hint">点击下方按钮进入报名页面</p>
+                    <div class="reg-link-display">
+                        🔗 https://s.qun100.com/link/afLeLiLf9Hb
+                    </div>
+                    <br>
+                    <a href="https://s.qun100.com/link/afLeLiLf9Hb" target="_blank" rel="noopener noreferrer" class="reg-btn">
+                        <span class="btn-icon">🏓</span> 立即报名
+                    </a>
+                    <!-- 咨询联系人 -->
+                    <div class="contact-row">
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span> 咨询：<strong>姚毅君</strong> 13110930142
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📞</span> 咨询：<strong>杨雯</strong> 18060958195
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============ 底部条 ============ -->
+            <div class="footer-strip">
+                厦门大学厦门校友会 · 乒乓球协会 · <span>以球会友 以乒传情</span>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
